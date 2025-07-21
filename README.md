@@ -1,89 +1,102 @@
 
-# 🧬 Virus-MNIST Malware Grad-CAM Visualizer
+# 🦠 Malware Family Classification using Virus-MNIST (with Grad-CAM)
 
-This project is a deep learning-based web app for visualizing malware detection using **CNN and Grad-CAM**.  
-It is trained on the [Virus-MNIST dataset](https://www.kaggle.com/competitions/virus-mnist-malware-image-classification/overview) and predicts malware families by interpreting 32x32 grayscale images of malicious binaries.
-
-🛡️ It helps explain *why* the model predicted a certain malware class by highlighting the most important image regions using Grad-CAM.
+This project demonstrates a deep learning-based malware classification system trained on the **Virus-MNIST** dataset. It leverages a **Convolutional Neural Network (CNN)** to predict malware family classes from grayscale image representations of malware binaries. Additionally, it provides visual **Grad-CAM** explanations to help understand the model's predictions.
 
 ---
 
-## 🚀 Demo
+## 🚀 Features
 
-**Live on Hugging Face Spaces (after deployment):**  
-👉 [https://huggingface.co/spaces/your-username/virusmnist-gradcam](https://huggingface.co/spaces/your-username/virusmnist-gradcam)
-
-### 🔍 Screenshot
-
-<img src="demo_screenshot.png" width="800"/>
-
----
-
-## 📂 Files Included
-
-- `app.py` - Gradio app for prediction + Grad-CAM visualization
-- `virusmnist_cnn.h5` - Trained CNN model file (Keras/TensorFlow)
-- `requirements.txt` - List of dependencies for Hugging Face Spaces
+- Trains a CNN on Virus-MNIST (grayscale 32x32 images)
+- Visualizes predictions with Grad-CAM heatmaps
+- Interactive web interface using Gradio
+- Highlights Top-3 predicted malware classes with confidence scores
+- Explains model decisions visually
+- Ready for deployment on Hugging Face Spaces or Render
 
 ---
 
-## 📊 Top 3 Predictions
+## 🧠 Model Architecture
 
-For each malware image you upload, the app displays:
-- Top 3 predicted malware families (with probabilities)
-- Grad-CAM explanation: why the model made the prediction
-
----
-
-## 💡 How it Works
-
-1. The image is resized to 32x32 and normalized.
-2. A CNN classifies it into one of the 10 malware families.
-3. Grad-CAM generates a heatmap showing the most activated regions.
-4. The heatmap is overlaid on the original image.
-5. An explanation panel shows the top 3 classes and reasoning.
+- Input: 32x32 grayscale image
+- 2D Convolutional Layers + MaxPooling
+- Dense layers with ReLU and Dropout
+- Output: Softmax classification into 8 malware families
 
 ---
 
-## 🏷️ Malware Classes
+## 🧾 Dataset
 
-- Allaple_A
-- Kelihos_ver3
-- Lollipop
-- Obfuscator.ACY
-- Ramnit
-- Simda
-- Tracur
-- Vundo
-- Kelihos_ver1
-- Skintrim.N
+- **Virus-MNIST** (available on [Kaggle](https://www.kaggle.com/datasets/zihaoliu/virus-mnist))
+- 32x32 grayscale image representations of malware binaries
+- 8 malware classes (0 to 7)
 
 ---
 
-## 🧪 Run Locally (Optional)
+## 🧪 How to Run
 
+### 1. Train the model (already trained)
 ```bash
-git clone https://github.com/your-username/virusmnist-gradcam.git
-cd virusmnist-gradcam
-pip install -r requirements.txt
+python train_model.py
+```
+
+### 2. Launch the Grad-CAM app
+```bash
 python app.py
+```
+
+### 3. Upload a malware image and view:
+- Predicted malware family
+- Top-3 class scores
+- Grad-CAM explanation
+
+---
+
+## 📁 File Structure
+
+```
+.
+├── app.py                # Gradio app with Grad-CAM
+├── train_model.py        # CNN training script (optional)
+├── virusmnist_cnn.h5     # Pretrained CNN model (Keras)
+├── requirements.txt      # Python dependencies
+└── README.md             # This file
 ```
 
 ---
 
-## ☁️ Deploy on Hugging Face
+## 🛠 Dependencies
 
-1. Create a new Space (Gradio)
-2. Upload these files:
-   - `app.py`
-   - `requirements.txt`
-   - `virusmnist_cnn.h5`
-3. Space will auto-build and launch.
+Install all required packages with:
+
+```bash
+pip install -r requirements.txt
+```
+
+Main libraries used:
+- TensorFlow / Keras
+- NumPy, Matplotlib, OpenCV
+- Gradio for UI
+
+---
+
+## 📦 Deployment
+
+You can deploy this app on:
+- [Hugging Face Spaces](https://huggingface.co/spaces) (Gradio interface)
+- [Render](https://render.com) (Python/Flask app hosting)
+- [Replit](https://replit.com) (experimental or quick demos)
 
 ---
 
-## 📜 License
+## 📚 Acknowledgements
 
-This project is for educational use only. Dataset from [Virus-MNIST](https://www.kaggle.com/competitions/virus-mnist-malware-image-classification/overview).
+- Virus-MNIST Dataset by Zihao Liu (Kaggle)
+- Grad-CAM Explanation technique
+- TensorFlow/Keras for model training
 
 ---
+
+## 👤 Author
+
+Built with ❤️ as part of a deep learning + explainability portfolio project.
